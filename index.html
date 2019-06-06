@@ -1,0 +1,551 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-content">
+                <ul>
+                    <li><a href="#" id="headerViewAll"><i class="fas fa-th"></i></a></li>
+                    <li><a href="#" id="headerAddEntry"><i class="fas fa-plus-square"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="content form-content fade-in-animation" id="formContent">
+        <div class="decoration-icon">
+            <i class="fas fa-pencil-alt pencil"></i>
+        </div>
+        <form action="" name="form" id="form">
+            <div class="form container fade-in-animation">
+                <div class="title-container">
+                    <h1>Application form</h1>
+                </div>
+                <div class="input-section">
+                    <label for="name">Name</label>
+                    <div class="input-field"><i class="far fa-user"></i>
+                        <input type="text" class="form-input" name="name" id="name">
+                    </div>
+                </div>
+                <div class="input-section">
+                    <label for="email">Email</label>
+                    <div class="input-field"><i class="far fa-envelope-open"></i>
+                        <input type="text" class="form-input" name="email" id="email">
+                    </div>
+                </div>
+                <div class="input-section">
+                    <label for="age">Age</label>
+                    <div class="input-field"><i class="fas fa-pen"></i>
+                        <input type="number" class="form-input" name="age" id="age">
+                    </div>
+                </div>
+                <div class="input-section">
+                    <label for="phone">Phone Number</label>
+                    <div class="input-field"><i class="fas fa-phone"></i>
+                        <input type="number" class="form-input" name="phone" id="phone">
+                    </div>
+                </div>
+                <div class="input-section">
+                    <label for="">Preferred Way of Communication</label>
+                    <div class="input-field">
+                        Email<input type="radio" name="communication" value="email">
+                        Phone<input type="radio" name="communication" value="phone">
+                    </div>
+                </div>
+                <div class="input-section">
+                    <label for="englishLevel">English Level</label>
+                    <div class="input-field ">
+                        <select class="form-input" name="english_level" id="englishLevel">
+                            <option value="a1">A1</option>
+                            <option value="a2">A2</option>
+                            <option value="b1">B1</option>
+                            <option value="b2">B2</option>
+                            <option value="c1">C1</option>
+                            <option value="c2">C2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-section">
+                    <label for="date">Available to start</label>
+                    <input type="date" class="form-input" name="date" id="date">
+                </div>
+                <div class="input-section">
+                    <label for="skills">Technical Skills and Counrses</label>
+                    <textarea cols="30" rows="3" name="skills" id="skills"></textarea>
+                </div>
+                <div class="input-section">
+                    <label for="presentation">Short Personal Presentation</label>
+                    <textarea cols="30" rows="3" name="presentation" id="presentation"></textarea>
+                </div>
+                <div class="input-section">
+                    <label for="studyHome">Study from home</label>
+                    <input type="checkbox" name="study_home" id="studyHome">
+                </div>
+                <input type="hidden" id="hiddenInput" value="">
+                <div class="input-section">
+                    <input type="submit" value="Add Application" id="submitAdd">
+                    <input type="submit" value="Edit Application" id="submitEdit">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="content fade-in-animation" id="entriesList">
+        <div class="decoration-icon">
+            <i class="fas fa-pencil-alt pencil"></i>
+        </div>
+        <div class="entries-content fade-in-animation">
+            <div class="title">
+                <h1>Entries<span>.</span></h1>
+            </div>
+            <div class="entries container fade-in-animation" id="entryContainer">
+                <div class="entry-box">
+                    <div class="actions-container">
+                        <span class="delete"><i class="far fa-trash-alt"></i></span>
+                        <a class="edit"><i class="fas fa-pen"></i></a>
+                    </div>
+                    <div class="entry-inner">
+                        <div class="name">
+                            <h2>Korneliq Petrova</h2>
+                        </div>
+                        <div class="email">
+                            <p>sgfsdf@abv.bg</p>
+                        </div>
+                        <div class="presentation">Lorem ipsum dorem Lorem ipsum dorem sit amet sit amet ...<a href="#"
+                                class="btn-read">Read entry</a></div>
+                    </div>
+                </div>
+                <div class="entry-box">
+                    <div class="actions-container">
+                        <span class="delete"><i class="far fa-trash-alt"></i></span>
+                        <a class="edit"><i class="fas fa-pen"></i></a>
+                    </div>
+                    <div class="entry-inner">
+                        <div class="name">
+                            <h2>Korneliq Petrova</h2>
+                        </div>
+                        <div class="email">
+                            <p>sgfsdf@abv.bg</p>
+                        </div>
+                        <div class="presentation">Lorem ipsum dorem sit amet ...a<a href="3" class="btn-read">Read
+                                entry</a></div>
+                    </div>
+                </div>
+                <div class="entry-box">
+                    <div class="actions-container">
+                        <span class="delete"><i class="far fa-trash-alt"></i></span>
+                        <a class="edit"><i class="fas fa-pen"></i></a>
+                    </div>
+                    <div class="entry-inner">
+                        <div class="name">
+                            <h2>Korneliq Petrova</h2>
+                        </div>
+                        <div class="email">
+                            <p>sgfsdf@abv.bg</p>
+                        </div>
+                        <div class="presentation">Lorem ipsum dorem Lorem ipsum dorem sit amet sit amet ...<a href="3"
+                                class="btn-read">Read entry</a></div>
+                    </div>
+                </div>
+                <div class="entry-box">
+                    <div class="actions-container">
+                        <span class="delete"><i class="far fa-trash-alt"></i></span>
+                        <a class="edit"><i class="fas fa-pen"></i></a>
+                    </div>
+                    <div class="entry-inner">
+                        <div class="name">
+                            <h2>Korneliq Petrova</h2>
+                        </div>
+                        <div class="email">
+                            <p>sgfsdf@abv.bg</p>
+                        </div>
+                        <div class="presentation">Lorem ipsum dorem sit amet Lorem ipsum dorem sit amet...<a href="3"
+                                class="btn-read">Read entry</a></div>
+                    </div>
+                </div>
+                <div class="entry-box ">
+                    <div class="actions-container">
+                        <span class="delete"><i class="far fa-trash-alt"></i></span>
+                        <a class="edit"><i class="fas fa-pen"></i></a>
+                    </div>
+                    <div class="entry-inner">
+                        <div class="name">
+                            <h2>Korneliq Petrova</h2>
+                        </div>
+                        <div class="email">
+                            <p>sgfsdf@abv.bg</p>
+                        </div>
+                        <div class="presentation">Lorem ipsum dorem sit amet ...<a href="3" class="btn-read">Read entry</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content fade-in-animation" id="readEntry">
+        <div class="decoration-icon">
+            <i class="fas fa-pencil-alt pencil"></i>
+        </div>
+        <div class="entry-content">
+            <div class="title entry">
+                <h1 id="readName">Tsvetelina Yodanova</h1>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label inline">Email</span>
+                    <p class="entry-data" id="readEmail">kanbanka.dryn@gmail.com</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label inline">Age:</span>
+                    <p class="entry-data" id="readAge">20</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">Phone:</span>
+                    <p class="entry-data" id="readPhone">09809709707</p>
+                </div>
+            </div>
+
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">Preferred Way of Communication</span>
+                    <p class="entry-data" id="readCommunication">email</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">English Level:</span>
+                    <p class="entry-data" id="readEnglishLevel">a1</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">Available to start on:</span>
+                    <p class="entry-data" id="readStartDate">12.54.2080</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">Technical Skills and Counrses:</span>
+                    <p class="entry-data" id="readSkills">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">Short Personal Presentation:</span>
+                    <p class="entry-data" id="readPresentation">Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Quam, iure
+                        temporibus. Ullam aspernatur voluptatibus numquam laudantium consectetur, ut earum blanditiis
+                        quos, aliquid, asperiores architecto reprehenderit unde soluta eum quod. Corporis.</p>
+                </div>
+            </div>
+            <div class="entry-info">
+                <div class="entry-line">
+                    <span class="label">Study From home:</span>
+                    <p class="entry-data" id="readStudyHome">yes</p>
+                </div>
+            </div>
+            <div class="entry-info buttons">
+                <div>
+                    <button class="entry-btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="entry-btn btn-edit"><i class="fas fa-pen"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+            crossorigin="anonymous"></script> -->
+<script>
+
+    class EntriesDb {
+
+        constructor() {
+            this.entries = [];
+        }
+
+        getEntries() {
+            return this.entries;
+        }
+
+        addEntry(entry) {
+            this.entries.push(entry);
+        }
+
+        getById(id) {
+            return this.entries.find(function (entry) {
+                return entry.id == id;
+            });
+        }
+
+        removeById(id) {
+            let idx = this.entries.findIndex(entry => entry.id == id);
+            this.entries.splice(idx, 1);
+        }
+
+        edit(id) {
+            let idx = this.entries.findIndex(entry => entry.id == id);
+            this.entries[idx] = 'Edited';
+        }
+
+    }
+
+    class Entry {
+
+        constructor(id, name, email, age, phone, communication
+            , englishLevel, startDate, skills, presentation, studyHome) {
+            this.id = id;
+            this.name = name;
+            this.email = email;
+            this.age = age;
+            this.phone = phone;
+            this.communication = communication;
+            this.englishLevel = englishLevel;
+            this.startDate = startDate;
+            this.skills = skills;
+            this.presentation = presentation;
+            this.studyHome = studyHome;
+        }
+
+    }
+
+    document.getElementsByClassName('btn-back')[0].addEventListener('click', function () {
+        setVisible('entriesList');
+    });
+
+
+    let entriesDb = new EntriesDb();
+    let id = 0;
+
+    let submitBtn = document.getElementById('submitAdd');
+
+
+
+    submitBtn.addEventListener('click', function (ev) {
+
+        ev.preventDefault();
+        let form = getFromFields();
+
+        let newEntry = new Entry(id, form.name.value, form.email.value, form.age.value
+            , form.phone.value, form.communication.value, form.englishLevel.value, form.startDate.value
+            , form.skills.value, form.presentation.value, form.studyHome.nodeValue);
+
+        id++;
+
+        entriesDb.addEntry(newEntry);
+
+        entriesDb.getEntries().forEach(element => {
+            console.log(JSON.stringify(element));
+        });
+
+        document.getElementById('form').reset();
+
+        updateEntries(entriesDb.getEntries());
+        updateActionBtns()
+        setVisible('entriesList');
+
+    });
+
+    function getFromFields() {
+        let formFields = {};
+        formFields.name = document.getElementById('name');
+        formFields.email = document.getElementById('email');;
+        formFields.age = document.getElementById('age');
+        formFields.phone = document.getElementById('phone');
+        formFields.communication = document.getElementsByName('communication')[0];
+        formFields.englishLevel = document.getElementById('englishLevel');
+        formFields.startDate = document.getElementById('date');
+        formFields.skills = document.getElementById('skills');
+        formFields.presentation = document.getElementById('presentation');
+        formFields.studyHome = document.getElementById('studyHome');
+        formFields.hiddenInput = document.getElementById('hiddenInput');
+        return formFields;
+    }
+
+
+
+    function updateActionBtns() {
+        let deleteButtons = document.getElementsByClassName("delete");
+        let editButtons = document.getElementsByClassName('edit');
+        let readEntryButtons = document.getElementsByClassName('btn-read');
+
+        for (let i = 0; i < deleteButtons.length; i++) {
+            deleteButtons[i].addEventListener('click', function (ev) {
+                let id = this.parentNode.parentNode.getAttribute('id');
+                entriesDb.removeById(id);
+                updateEntries(entriesDb.getEntries());
+                updateActionBtns();
+            });
+        }
+
+        for (let i = 0; i < editButtons.length; i++) {
+            editButtons[i].addEventListener('click', function (ev) {
+                ///tva da e s data
+
+                let id = this.parentNode.parentNode.getAttribute('id');
+                setFormEntryInfo(id);
+                setVisible('formContent');
+            });
+        }
+
+        for (let i = 0; i < readEntryButtons.length; i++) {
+            readEntryButtons[i].addEventListener('click', function (ev) {
+                ev.preventDefault();
+                let id = this.dataset.entryid;
+
+                setReadEntryInfo(id);
+                setVisible('readEntry');
+            });
+        }
+
+    }
+
+
+    String.prototype.format = function (args) {
+        let str = this;
+        return str.replace(String.prototype.format.regex, function (item) {
+            let intVal = parseInt(item.substring(1, item.length - 1));
+            let replace;
+            if (intVal >= 0) {
+                replace = args[intVal];
+            } else if (intVal === -1) {
+                replace = "{";
+            } else if (intVal === -2) {
+                replace = "}";
+            } else {
+                replace = "";
+            }
+            return replace;
+        });
+    };
+
+    String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
+
+    function updateEntries(entryCollection) {
+
+        let entryTemplate = `<div class="entry-box" id="{0}">
+                    <div class="actions-container" >
+                        <span class="delete"><i class="far fa-trash-alt"></i></span>
+                        <a class="edit"><i class="fas fa-pen"></i></a>
+                    </div>
+                    <div class="entry-inner">
+                        <div class="name">
+                            <h2>{1}</h2>
+                        </div>
+                        <div class="email">
+                            <p>{2}</p>
+                        </div>
+                        <div class="presentation">{3} ...<a href="#" class="btn-read" data-entryid="{0}">Read entry</a></div>
+                    </div>
+                </div>`;
+
+        let entryContainer = document.getElementById('entryContainer');
+        entryContainer.innerHTML = '';
+        entryCollection.forEach(function (entry) {
+            entryContainer.innerHTML += entryTemplate.format([entry.id, entry.name, entry.email, entry.presentation.substr(0, 30)]);
+        });
+
+    }
+
+    function setVisible(visibleSectionId) {
+        let sectionsIds = ['formContent', 'entriesList', 'readEntry'];
+
+        sectionsIds.forEach(function (id) {
+            document.getElementById(id).classList.add('display-none');
+        });
+        document.getElementById(visibleSectionId).classList.remove('display-none');
+
+    }
+
+    function setReadEntryInfo(id) {
+
+        let entry = entriesDb.getById(id);
+
+        document.getElementById('readName').innerText = entry.name;
+        document.getElementById('readEmail').innerText = entry.email;
+        document.getElementById('readAge').innerText = entry.age;
+        document.getElementById('readPhone').innerText = entry.phone;
+        document.getElementById('readCommunication').innerText = entry.communication;
+        document.getElementById('readEnglishLevel').innerText = entry.englishLevel;
+        document.getElementById('readStartDate').innerText = entry.startDate;
+        document.getElementById('readSkills').innerText = entry.skills;
+        document.getElementById('readPresentation').innerText = entry.presentation;
+        document.getElementById('readStudyHome').innerText = entry.studyHome;
+
+    }
+
+    function setFormEntryInfo(id) {
+        let entry = entriesDb.getById(id);
+
+        let fields = getFromFields();
+        fields.name.value = entry.name;
+        fields.email.value = entry.email;
+        fields.age.value = entry.age;
+        fields.phone.value = entry.phone;
+        fields.communication.value = entry.communication;
+        fields.englishLevel.value = entry.englishLevel;
+        fields.startDate.value = entry.startDate;
+        fields.skills.value = entry.skills;
+        fields.presentation.value = entry.presentation;
+        fields.studyHome.value = entry.studyHome;
+        fields.hiddenInput.value = id;
+
+        setVisible('formContent');
+
+    }
+
+    document.getElementById('submitEdit').addEventListener('click', function (ev) {
+        ev.preventDefault();
+        let formFields = getFromFields();
+
+        let targetEntry = entriesDb.getById(formFields.hiddenInput.value);
+
+        targetEntry.name = formFields.name.value;
+        targetEntry.email = formFields.email.value;
+        targetEntry.age = formFields.age.value;
+        targetEntry.phone = formFields.phone.value;
+        targetEntry.communication = formFields.communication.value;
+        targetEntry.englishLevel = formFields.englishLevel.value;
+        targetEntry.startDate = formFields.startDate.value;
+        targetEntry.skills = formFields.skills.value;
+        targetEntry.presentation = formFields.presentation.value;
+        targetEntry.studyHome = formFields.studyHome.value;
+
+        updateEntries(entriesDb.getEntries());
+        updateActionBtns();
+        setVisible('entriesList');
+
+    });
+
+    document.getElementById('headerViewAll').addEventListener('click', function (ev) {
+        ev.preventDefault();
+        document.getElementById('form').reset();
+        setVisible('entriesList');
+
+    });
+
+    document.getElementById('headerAddEntry').addEventListener('click', function (ev) {
+        ev.preventDefault();
+        document.getElementById('form').reset();
+        setVisible('formContent');
+    });
+
+
+</script>
+
+</html>
