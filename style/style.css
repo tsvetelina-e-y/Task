@@ -3,7 +3,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    
 }
 
 .fade-in-animation {
@@ -16,14 +15,18 @@
     display: none !important;
 }
 
+/* .pl-10 {
+    padding-left: 10px;
+} */
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
-
-    100%  {
+    100% {
         opacity: 1;
-    };
+    }
+    ;
 }
 
 body {
@@ -46,11 +49,12 @@ input[type="text"], input[type="number"], input[type="date"], textarea, textarea
 h1 {
     color: #43AA8B;
 }
-  /* -webkit-box-align: center!important;
+
+/* -webkit-box-align: center!important;
     -ms-flex-align: center!important;
     align-items: center!important; */
-/* max-height: 100vh; */
 
+/* max-height: 100vh; */
 
 /* .content.form-content, {
     
@@ -107,10 +111,9 @@ h1 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
     padding: 10px;
-
     position: relative;
-    
 }
+
 .entries .entry-box:hover .actions-container {
     display: block;
 }
@@ -124,19 +127,16 @@ h1 {
     animation-duration: .3s all ease-in-out;
 }
 
-
 .actions-container {
     position: absolute;
     width: auto;
     background: rgba(231, 228, 228, 0.719);
     top: -4px;
     right: 10px;
-
     box-shadow: 0 0.25rem 0.125rem 0 rgba(0, 0, 0, 0.05);
     transition: .3s show ease-in-out;
     animation-name: show;
     animation-duration: .2s;
-   
 }
 
 @keyframes show {
@@ -169,7 +169,6 @@ h1 {
     display: none;
 }
 
-
 .actions-container .delete {
     color: #C44536;
 }
@@ -199,6 +198,8 @@ h1 {
 
 .presentation {
     font-size: 20px;
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .entry-box {
@@ -216,7 +217,6 @@ a.btn-read {
     padding: 4px;
     border: 2px solid #43AA8B;
     border-radius: 5px;
-
     transition: .2s all ease-in-out;
 }
 
@@ -248,8 +248,24 @@ a.btn-read {
     font-size: 20px;
 }
 
+.form-content .form-input.date, .form-content .form-input.level {
+    padding-left: 15px;
+}
+
+.form-content .form-input.not-valid, textarea.not-valid {
+    border-bottom: 2px solid #C44536;
+}
+
+.input-field.err i {
+    color: #C44536 !important;
+}
+
 .form-content .form-input:focus, .form-content textarea:focus {
     border-bottom: 2px solid #43AA8B !important;
+}
+
+.form-content .form-input.not-valid:focus, .form-content textarea.not-valid:focus {
+    border-bottom: 2px solid #C44536 !important;
 }
 
 textarea {
@@ -328,7 +344,7 @@ nav .nav-container i {
 
 /* start read entry section */
 
-.title.entry h1{
+.title.entry h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     padding: 0;
@@ -337,7 +353,6 @@ nav .nav-container i {
 .entry-content {
     /* border-left: 35px solid rgba(255, 255, 0, 0.137); */
     padding-left: 30px;
-
 }
 
 .entry-data {
@@ -361,7 +376,7 @@ nav .nav-container i {
     margin-right: 15px;
 }
 
- .label.inline {
+.label.inline {
     display: inline-block;
 }
 
@@ -401,5 +416,82 @@ nav .nav-container i {
     font-size: 30px;
 }
 
-
 /* end read entry section */
+
+/* start radio buttons */
+
+.check-btn-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    /* width: 20px; */
+    height: 20px;
+
+    min-width: 70px;
+}
+
+.input-field.radio-btns {
+    /* margin: 10px 0 15px 0; */
+}
+
+.radio-btn {
+    display: inline-block;
+    margin-right: 30x;
+}
+
+.radio-btn .label-radio {
+    font-size: 20px;
+    color: #43AA8B;
+    font-weight: 500;
+}
+
+.check-btn-container input {
+    display: none;
+}
+
+.check-btn-container .circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #eee;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* background: #F49AC0;; */
+    border: 2px solid #fff;
+    /* background: rgba(240, 80, 80, 0.521); */
+}
+
+.agree-section .check-btn-container input+.circle:after {
+    /* background: none; */
+}
+
+
+ .check-btn-container input + .circle:after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: inherit;
+    border-radius: 50%;
+    background: none;
+    background: #fff;
+}
+
+.check-btn-container input + .circle.not-valid::after {
+    background: #C44536;
+}
+
+.check-btn-container input.checked + .circle::after {
+    opacity: 1;
+    background: #43AA8B;
+}
+
+
+
+/* end radio buttons */

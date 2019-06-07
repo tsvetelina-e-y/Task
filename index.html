@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
+
+    <link href="./lib/datepicker.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Include English language -->
+
 </head>
 
 <body>
@@ -51,21 +57,36 @@
                 </div>
                 <div class="input-section">
                     <label for="phone">Phone Number</label>
-                    <div class="input-field"><i class="fas fa-phone"></i>
-                        <input type="number" class="form-input" name="phone" id="phone">
+                    <div class="input-field"><i class="fas fa-phone input-icon"></i>
+                        <input type="text" class="form-input" name="phone" id="phone">
                     </div>
                 </div>
                 <div class="input-section">
                     <label for="">Preferred Way of Communication</label>
-                    <div class="input-field">
-                        Email<input type="radio" name="communication" value="email">
-                        Phone<input type="radio" name="communication" value="phone">
+                    <div class="input-field radio-btns">
+
+                        <div class="radio-btn">
+                            <span class="label-radio">Email</span>
+                            <label class="check-btn-container">
+
+                                <input type="radio" onclick="toggleCheck(this)" name="communication">
+                                <span class="circle" id="circle"></span>
+                            </label>
+                        </div>
+                        <div class="radio-btn">
+                            <span class="label-radio">Phone</span>
+                            <label class="check-btn-container">
+                                <input type="radio" onclick="toggleCheck(this)" name="communication">
+                                <span class="circle" id="circle"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
+
                 <div class="input-section">
                     <label for="englishLevel">English Level</label>
                     <div class="input-field ">
-                        <select class="form-input" name="english_level" id="englishLevel">
+                        <select class="form-input level" name="english_level" id="englishLevel">
                             <option value="a1">A1</option>
                             <option value="a2">A2</option>
                             <option value="b1">B1</option>
@@ -77,7 +98,8 @@
                 </div>
                 <div class="input-section">
                     <label for="date">Available to start</label>
-                    <input type="date" class="form-input" name="date" id="date">
+                    <input type="text" class="datepicker-here form-input date" data-language="en" id="startDate"
+                        data-date-format="dd/mm/yyyy" autocomplete="off">
                 </div>
                 <div class="input-section">
                     <label for="skills">Technical Skills and Counrses</label>
@@ -268,9 +290,12 @@
     </div>
 </body>
 
-<!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js"
-            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-            crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+    crossorigin="anonymous"></script>
+
+
+
+
 <script>
 
     class EntriesDb {
@@ -324,13 +349,18 @@
 
     }
 
+
+
+    let entriesDb = new EntriesDb();
+    let id = 0
+    id = addEntries(id);
+
+
     document.getElementsByClassName('btn-back')[0].addEventListener('click', function () {
         setVisible('entriesList');
     });
 
 
-    let entriesDb = new EntriesDb();
-    let id = 0;
 
     let submitBtn = document.getElementById('submitAdd');
 
@@ -341,11 +371,17 @@
         ev.preventDefault();
         let form = getFromFields();
 
-        let newEntry = new Entry(id, form.name.value, form.email.value, form.age.value
+        console.log(form.startDate);
+
+        if (!validateForm()) {
+            return;
+        }
+
+        let newEntry = new Entry(id++, form.name.value, form.email.value, form.age.value
             , form.phone.value, form.communication.value, form.englishLevel.value, form.startDate.value
             , form.skills.value, form.presentation.value, form.studyHome.nodeValue);
 
-        id++;
+
 
         entriesDb.addEntry(newEntry);
 
@@ -367,9 +403,9 @@
         formFields.email = document.getElementById('email');;
         formFields.age = document.getElementById('age');
         formFields.phone = document.getElementById('phone');
-        formFields.communication = document.getElementsByName('communication')[0];
+        formFields.communication = document.getElementsByName('communication');
         formFields.englishLevel = document.getElementById('englishLevel');
-        formFields.startDate = document.getElementById('date');
+        formFields.startDate = document.getElementById('startDate');
         formFields.skills = document.getElementById('skills');
         formFields.presentation = document.getElementById('presentation');
         formFields.studyHome = document.getElementById('studyHome');
@@ -416,27 +452,29 @@
     }
 
 
-    String.prototype.format = function (args) {
-        let str = this;
-        return str.replace(String.prototype.format.regex, function (item) {
-            let intVal = parseInt(item.substring(1, item.length - 1));
-            let replace;
-            if (intVal >= 0) {
-                replace = args[intVal];
-            } else if (intVal === -1) {
-                replace = "{";
-            } else if (intVal === -2) {
-                replace = "}";
-            } else {
-                replace = "";
-            }
-            return replace;
-        });
-    };
 
-    String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
 
     function updateEntries(entryCollection) {
+
+        String.prototype.format = function (args) {
+            let str = this;
+            return str.replace(String.prototype.format.regex, function (item) {
+                let intVal = parseInt(item.substring(1, item.length - 1));
+                let replace;
+                if (intVal >= 0) {
+                    replace = args[intVal];
+                } else if (intVal === -1) {
+                    replace = "{";
+                } else if (intVal === -2) {
+                    replace = "}";
+                } else {
+                    replace = "";
+                }
+                return replace;
+            });
+        };
+
+        String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
 
         let entryTemplate = `<div class="entry-box" id="{0}">
                     <div class="actions-container" >
@@ -450,7 +488,7 @@
                         <div class="email">
                             <p>{2}</p>
                         </div>
-                        <div class="presentation">{3} ...<a href="#" class="btn-read" data-entryid="{0}">Read entry</a></div>
+                        <p class="presentation">{3} ...<a href="#" class="btn-read" data-entryid="{0}">Read entry</a></p>
                     </div>
                 </div>`;
 
@@ -498,6 +536,8 @@
         fields.age.value = entry.age;
         fields.phone.value = entry.phone;
         fields.communication.value = entry.communication;
+        let emailPhoneIdx = entry.communication == 'email' ? 0 : 1;
+        fields.communication[emailPhoneIdx].checked = true;
         fields.englishLevel.value = entry.englishLevel;
         fields.startDate.value = entry.startDate;
         fields.skills.value = entry.skills;
@@ -526,6 +566,9 @@
         targetEntry.presentation = formFields.presentation.value;
         targetEntry.studyHome = formFields.studyHome.value;
 
+        if (!validateForm()) {
+            return;
+        }
         updateEntries(entriesDb.getEntries());
         updateActionBtns();
         setVisible('entriesList');
@@ -545,7 +588,157 @@
         setVisible('formContent');
     });
 
+    function validateForm() {
+
+        let regexPatterns = {
+            name: /[a-zA-z]+/,
+            email: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i,
+            phone: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[0-9]*$/g,
+            age: /[1-9]{1}[0-9]{0,2}/,
+            date: /^((0|1|2)\d{1})\/((0|1)\d{1})\/((19|20)\d{2})/,
+            text: /.{10,}/
+        }
+        let formFields = getFromFields();
+
+        let allValid = true;
+
+        if (!regexPatterns.name.test(formFields.name.value)) {
+            allValid = false;
+            addErrorStyles(formFields.name);
+        }
+
+        if (!regexPatterns.email.test(formFields.email.value)) {
+            allValid = false;
+            addErrorStyles(formFields.email);
+        }
+
+        if (!regexPatterns.phone.test(formFields.phone.value)) {
+
+            allValid = false;
+            addErrorStyles(formFields.phone);
+        }
+
+        if (!regexPatterns.age.test(formFields.age.value)) {
+            allValid = false;
+            addErrorStyles(formFields.age);
+
+        }
+
+        if (!regexPatterns.text.test(formFields.skills.value)) {
+            allValid = false;
+            addErrorStyles(formFields.skills);
+
+        }
+
+        if (!regexPatterns.text.test(formFields.presentation.value)) {
+            allValid = false;
+            addErrorStyles(formFields.presentation);
+
+        }
+
+        // let date = new Date(formFields.startDate.value);
+        // if (new Date() > date) {
+        //     alert('starto e');
+        // }
+
+        if (!regexPatterns.date.test(formFields.startDate.value)) {
+
+            allValid = false;
+            addErrorStyles(formFields.startDate);
+
+        }
+
+
+
+        if (formFields.communication.value == undefined) {
+
+            let circles = document.getElementsByClassName('circle');
+
+            for (let i = 0; i < circles.length; i++) {
+                circles[i].classList.add('not-valid');
+            }
+
+        }
+
+
+        if (allValid) {
+            removeErrorStyles();
+        }
+
+        return allValid;
+
+
+    }
+
+    function addErrorStyles(element) {
+        element.classList.add('not-valid');
+        element.parentNode.classList.add('err');
+    }
+
+    function removeErrorStyles() {
+        let inputs = document.getElementsByClassName('not-valid');
+        let inputParents = document.getElementsByClassName('err');
+
+        while (inputs[0]) {
+            inputs[0].classList.remove('not-valid')
+        }
+
+        while (inputParents[0]) {
+            inputParents[0].classList.remove('err')
+        }
+
+    }
+
+
+    function addEntries(id) {
+        let arrEntries = [
+            new Entry(id++, 'Alyssia Grey', 'alyssia@abv.bg', 20, '2342452345', 'email', 'a2', '06/05/2019', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, ', 'a type specimen book. It has survived not only five centuries, ', 'on'),
+            new Entry(id++, 'Domonic Valentine', 'domonic@gmail.com', 30, '456456745', 'phone', 'c2', '06/05/2019', 'A type specimen book. It has survived not only five centuries, ', ' Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make', 'off'),
+            new Entry(id++, 'Christina Baxter', 'christina@gmail.com', 23, '3452525', 'email', 'b2', '06/05/2019', 'Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing ', 'A type specimen book. It has survived not only five centuries, ', 'on'),
+            new Entry(id++, 'Reyansh Wainwright', 'reyansh@abv.bg', 15, '45734524', 'phone', 'b2', '06/05/2019', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, ', 'off'),
+            new Entry(id++, 'Jacque Gamble', 'jacque@gmail.com', 60, '474563', 'email', 'c1', '06/05/2019', 'Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing ', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, ', 'on'),
+            new Entry(id++, 'Zion Young', 'zion@gmail.com', 45, '345525', 'email', 'c1', '06/05/2019', '', 'Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing ', 'on'),
+        ];
+
+        arrEntries.forEach(function (entry) {
+            entriesDb.addEntry(entry);
+        });
+
+        updateEntries(entriesDb.getEntries());
+        updateActionBtns();
+        setVisible('entriesList');
+        return id;
+    }
+
+    function toggleCheck(element) {
+
+        let radioButtons = document.getElementsByName('communication');
+        console.log(radioButtons);
+
+        radioButtons.forEach(function (button) {
+            button.setAttribute("checked", "false");
+            button.classList.remove('checked');
+        });
+
+        element.setAttribute("checked", "true");
+        element.classList.add("checked");
+
+        // if (element.getAttribute("checked") == "true") {
+        //     element.setAttribute("checked", "false");
+
+        //     element.classList.remove("checked");
+        // } else {
+        //     element.setAttribute("checked", "true");
+        //     element.classList.add("checked");
+        // }
+    }
+
 
 </script>
+
+
+
+<script src="./lib/datepicker.min.js"></script>
+<script src="./lib/datepicker.en.js"></script>
 
 </html>
