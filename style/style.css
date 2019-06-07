@@ -446,6 +446,10 @@ nav .nav-container i {
     font-weight: 500;
 }
 
+.radio-btn .label-radio.not-valid {
+    color: #C44536;
+}
+
 .check-btn-container input {
     display: none;
 }
@@ -481,10 +485,6 @@ nav .nav-container i {
     border-radius: 50%;
     background: none;
     background: #fff;
-}
-
-.check-btn-container input + .circle.not-valid::after {
-    background: #C44536;
 }
 
 .check-btn-container input.checked + .circle::after {

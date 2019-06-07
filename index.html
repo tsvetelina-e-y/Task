@@ -69,14 +69,14 @@
                             <span class="label-radio">Email</span>
                             <label class="check-btn-container">
 
-                                <input type="radio" onclick="toggleCheck(this)" name="communication">
+                                <input type="radio" onclick="toggleCheck(this)" name="communication" value="email">
                                 <span class="circle" id="circle"></span>
                             </label>
                         </div>
                         <div class="radio-btn">
                             <span class="label-radio">Phone</span>
                             <label class="check-btn-container">
-                                <input type="radio" onclick="toggleCheck(this)" name="communication">
+                                <input type="radio" onclick="toggleCheck(this)" name="communication" value="phone">
                                 <span class="circle" id="circle"></span>
                             </label>
                         </div>
@@ -377,8 +377,12 @@
             return;
         }
 
+        let communicationValue = form.communication[0].checked
+            ? form.communication[0].value
+            : form.communication[1].value;
+
         let newEntry = new Entry(id++, form.name.value, form.email.value, form.age.value
-            , form.phone.value, form.communication.value, form.englishLevel.value, form.startDate.value
+            , form.phone.value, communicationValue, form.englishLevel.value, form.startDate.value
             , form.skills.value, form.presentation.value, form.studyHome.nodeValue);
 
 
@@ -535,7 +539,16 @@
         fields.email.value = entry.email;
         fields.age.value = entry.age;
         fields.phone.value = entry.phone;
-        fields.communication.value = entry.communication;
+        // fields.communication.value = entry.communication;
+        document.getElementsByName('communication').forEach(function (radioBtn) {
+            if (radioBtn.value == entry.communication) {
+                radioBtn.setAttribute('checked', 'true');
+                radioBtn.classList.add('checked');
+            } else {
+                radioBtn.setAttribute('checked', 'false');
+                radioBtn.classList.remove('checked');
+            }
+        });
         let emailPhoneIdx = entry.communication == 'email' ? 0 : 1;
         fields.communication[emailPhoneIdx].checked = true;
         fields.englishLevel.value = entry.englishLevel;
@@ -559,7 +572,9 @@
         targetEntry.email = formFields.email.value;
         targetEntry.age = formFields.age.value;
         targetEntry.phone = formFields.phone.value;
-        targetEntry.communication = formFields.communication.value;
+        targetEntry.communication = formFields.communication[0].checked
+            ? formFields.communication[0].value
+            : formFields.communication[1].value;
         targetEntry.englishLevel = formFields.englishLevel.value;
         targetEntry.startDate = formFields.startDate.value;
         targetEntry.skills = formFields.skills.value;
@@ -569,6 +584,8 @@
         if (!validateForm()) {
             return;
         }
+
+        document.getElementById('form').reset();
         updateEntries(entriesDb.getEntries());
         updateActionBtns();
         setVisible('entriesList');
@@ -601,38 +618,43 @@
         let formFields = getFromFields();
 
         let allValid = true;
+        let errInputs = [];
+
+        removeErrorStyles();
 
         if (!regexPatterns.name.test(formFields.name.value)) {
             allValid = false;
-            addErrorStyles(formFields.name);
+            errInputs.push(formFields.name);
         }
 
         if (!regexPatterns.email.test(formFields.email.value)) {
             allValid = false;
-            addErrorStyles(formFields.email);
+            errInputs.push(formFields.email);
         }
 
         if (!regexPatterns.phone.test(formFields.phone.value)) {
 
             allValid = false;
-            addErrorStyles(formFields.phone);
+            errInputs.push(formFields.phone);
         }
 
         if (!regexPatterns.age.test(formFields.age.value)) {
             allValid = false;
-            addErrorStyles(formFields.age);
+
+            errInputs.push(formFields.age);
 
         }
 
         if (!regexPatterns.text.test(formFields.skills.value)) {
             allValid = false;
-            addErrorStyles(formFields.skills);
 
+            errInputs.push(formFields.skills);
         }
 
         if (!regexPatterns.text.test(formFields.presentation.value)) {
             allValid = false;
-            addErrorStyles(formFields.presentation);
+
+            errInputs.push(formFields.presentation);
 
         }
 
@@ -644,15 +666,20 @@
         if (!regexPatterns.date.test(formFields.startDate.value)) {
 
             allValid = false;
-            addErrorStyles(formFields.startDate);
 
+            errInputs.push(formFields.startDate);
         }
 
+        errInputs.forEach(function (input) {
+            addErrorStyles(input);
+
+        });
 
 
-        if (formFields.communication.value == undefined) {
 
-            let circles = document.getElementsByClassName('circle');
+        if (!formFields.communication[0].checked && !formFields.communication[1].checked) {
+
+            let circles = document.getElementsByClassName('label-radio ');
 
             for (let i = 0; i < circles.length; i++) {
                 circles[i].classList.add('not-valid');
@@ -660,9 +687,10 @@
 
         }
 
-
         if (allValid) {
             removeErrorStyles();
+
+            // resetRadioButtons();
         }
 
         return allValid;
@@ -713,7 +741,7 @@
     function toggleCheck(element) {
 
         let radioButtons = document.getElementsByName('communication');
-        console.log(radioButtons);
+
 
         radioButtons.forEach(function (button) {
             button.setAttribute("checked", "false");
@@ -723,6 +751,7 @@
         element.setAttribute("checked", "true");
         element.classList.add("checked");
 
+
         // if (element.getAttribute("checked") == "true") {
         //     element.setAttribute("checked", "false");
 
@@ -731,6 +760,12 @@
         //     element.setAttribute("checked", "true");
         //     element.classList.add("checked");
         // }
+    }
+
+    function resetRadioButtons() {
+        document.getElementsByName('communication').forEach(function (element) {
+            element.setAttribute("checked", "false");
+        });;
     }
 
 
